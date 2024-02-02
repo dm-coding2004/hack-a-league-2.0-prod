@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A server for Hack-A-League 2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dm-coding2004/hack-a-league-2.0.git"
+  },
+  "author": "Dark Mode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dm-coding2004/hack-a-league-2.0/issues"
+  },
+  "homepage": "https://github.com/dm-coding2004/hack-a-league-2.0#readme"
+}
