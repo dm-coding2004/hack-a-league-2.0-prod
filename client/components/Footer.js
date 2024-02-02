@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='p-[70px] flex justify-between 
             bg-[#1f1f1f] '>
             <div className='flex flex-col gap-6'>
-            <h1 className='font-extrabold text-2xl'>CHATBOT.AI</h1>
+            <h1 className='font-extrabold text-2xl'>SuperLama.ai</h1>
             <div className='flex justify-between items-center  '>
                 <h2>insta</h2>
                 <h2>twitter</h2>

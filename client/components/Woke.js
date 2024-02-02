@@ -1,5 +1,5 @@
 
-import React from 'react';🥲
+import React from 'react';
 import { ScrollContainer, Animator, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
 const Woke = () => {
   
