@@ -1,0 +1,72 @@
+"use client"
+import Header from '@/components/header'
+import React, { useEffect, useState } from "react";
+import Faq from "react-faq-component";
+
+
+
+const data = {
+    title: "FAQ's",
+    rows: [
+        {
+            title: "Lorem ipsum dolor sit amet,",
+            content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tempor sem. Aenean vel turpis feugiat,
+              ultricies metus at, consequat velit. Curabitur est nibh, varius in tellus nec, mattis pulvinar metus.
+              In maximus cursus lorem, nec laoreet velit eleifend vel. Ut aliquet mauris tortor, sed egestas libero interdum vitae.
+              Fusce sed commodo purus, at tempus turpis.`,
+        },
+        {
+            title: "Nunc maximus, magna at ultricies elementum",
+            content:
+                "Nunc maximus, magna at ultricies elementum, risus turpis vulputate quam, vitae convallis ex tortor sed dolor.",
+        },
+        {
+            title: "Curabitur laoreet, mauris vel blandit fringilla",
+            content: `Curabitur laoreet, mauris vel blandit fringilla, leo elit rhoncus nunc, ac sagittis leo elit vel lorem.
+            Fusce tempor lacus ut libero posuere viverra. Nunc velit dolor, tincidunt at varius vel, laoreet vel quam.
+            Sed dolor urna, lobortis in arcu auctor, tincidunt mattis ante. Vivamus venenatis ultricies nibh in volutpat.
+            Cras eu metus quis leo vestibulum feugiat nec sagittis lacus.Mauris vulputate arcu sed massa euismod dignissim. `,
+        },
+        {
+            title: "What is the package version",
+            content: <p>current version is 1.2.1</p>,
+        },
+    ],
+};
+
+const styles = {
+
+     bgColor: 'black',
+    titleTextColor: "Grey",
+    rowTitleColor: "white",
+     rowContentColor: 'grey',
+     arrowColor: "white",
+     
+     
+};
+
+const config = {
+     animate: true,
+     arrowIcon: "+",
+     tabFocus: true
+};
+
+export default function Faqs() {
+    return (
+      
+        <div>
+          <Header/>
+          <div className=' bg-red  m-auto mt-[150px] pl-[12%]'>
+          <iframe width="1100" height="515" src="https://www.youtube.com/embed/FFfdyV8gnWk?si=o15utQcr8sMzr3A2" title="YouTube video player" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+   <div className='p-[60px] mt-[50px]'>
+            <Faq
+                data={data}
+                styles={styles}
+                config={config}
+            />
+            </div>
+        </div>
+    );
+}

@@ -6,6 +6,7 @@ import Woke from "@/components/Woke.js"
 import Yoke from "@/components/Yoke.js"
 import DiagramComponent from "@/components/example"
 
+
 export default function Home() {
   return (
     <div>
