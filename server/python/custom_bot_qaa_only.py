@@ -1,4 +1,5 @@
 from langchain_community.llms import Ollama
+from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.embeddings import OllamaEmbeddings
@@ -10,7 +11,7 @@ import time
 import sys
 import json
 
-llm = Ollama(model="tinyllama")
+llm = ChatOllama(model="tinyllama")
 output_parser = StrOutputParser()
 history_chat = ChatMessageHistory()
 n = len(sys.argv)
@@ -45,7 +46,7 @@ prompt = ChatPromptTemplate.from_messages([
      Your name is {name}. 
      Answer the user's questions based on the below context:\n\n{context}"""),
     MessagesPlaceholder(variable_name="chat_history"),
-    ("user", "{input}"),
+    ("human", "{input}"),
 ])
 
 # chat_history = [HumanMessage(content="Are there any animals to buy?"), AIMessage(content="No we are a Tech Company, we don't sell pets!")]

@@ -1,0 +1,13 @@
+{
+  "username": "Vilas",
+  "name": "Mario",
+  "dp": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+  "companyname": "Hike Cloth",
+  "category": "Clothes and Shoes",
+  "questions": [
+    {
+      "question": "What are some good shoes to buy in your store.",
+      "answer": "Some Good shoes to buy are Adidas X11 shoe."
+    }
+  ]
+}

@@ -12,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use("/static",express.static("public"));
 
 const port = process.env.PORT || 9000;
 
@@ -76,7 +77,7 @@ app.post("/createbot", (req, res) => {
   try {
     const botDescription = botDescriptionSchema.parse(req.body);
     fs.writeFileSync(
-      `./temp_db/${botDescription.username}.json`,
+      `./temp_db/${botDescription.username}_${botDescription.name}.json`,
       JSON.stringify(botDescription)
     );
     res.status(201);
@@ -88,13 +89,13 @@ app.post("/createbot", (req, res) => {
   }
 });
 
-app.get("/chatbot/:username/chat", (req, res) => {
+app.get("/chatbot/:username/:botname/chat", (req, res) => {
   try {
     const userInput = req.query.input?.toString() || "Hi Tell me about your products?";
     console.log(userInput)
     const botDetails = botDescriptionSchema.parse(
       JSON.parse(
-        fs.readFileSync(`./temp_db/${req.params.username}.json`, {
+        fs.readFileSync(`./temp_db/${req.params.username}_${req.params.botname}.json`, {
           encoding: "utf-8",
         })
       )

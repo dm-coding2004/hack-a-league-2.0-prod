@@ -20,4 +20,4 @@ chain = prompt | llm | StrOutputParser()
 topic = {"topic": "Space travel"}
 
 for chunks in chain.stream(topic):
-    print(chunks)
+    print(chunks, end="")

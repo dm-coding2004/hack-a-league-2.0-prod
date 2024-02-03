@@ -1,6 +1,7 @@
 from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_community.chat_models import ChatOllama
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -14,18 +15,18 @@ from langchain_core.messages import HumanMessage, AIMessage
 import time
 
 
-llm = Ollama(model="tinyllama")
+llm = ChatOllama(model="tinyllama")
 output_parser = StrOutputParser()
 
 
 embeddings = OllamaEmbeddings(model="tinyllama")
-loader = WebBaseLoader("https://www.sony.co.in/all-products")
-docs = loader.load()
+# loader = WebBaseLoader("https://www.sony.co.in/all-products")
+# docs = loader.load()
 
-print(docs)
+# print(docs)
 
-text_splitter = RecursiveCharacterTextSplitter()
-documents = text_splitter.split_documents(docs)
+# text_splitter = RecursiveCharacterTextSplitter()
+# documents = text_splitter.split_documents(docs)
 vector = FAISS.load_local("faiss_index", embeddings)
 print("In")
 # index_filename = "faiss_index"
@@ -60,25 +61,25 @@ start_time = time.time()
 # })
 
 
-for chunk in retrieval_chain.stream({
-    "chat_history": chat_history,
-    "input": "How can I add my liked tech products to Favourites section of Sony web app?",
-    "context": [Document(page_content="Here is the summarized answer for you")]
-}):
-    print(chunk)
+# for chunk in retrieval_chain.stream({
+#     "chat_history": chat_history,
+#     "input": "How can I add my liked tech products to Favourites section of Sony web app?",
+#     "context": [Document(page_content="Here is the summarized answer for you")]
+# }):
+#     print(chunk)
 
 end_time = time.time()
 elapsed_time = end_time - start_time
 
 print(elapsed_time)
 
-# print(response["answer"])
 
-# response = retrieval_chain.invoke({
-#     "chat_history": chat_history,
-#     "input": "How can I add my liked tech products to Favourites section of Sony web app?",
-#     "context": [Document(page_content="Here is the summarized answer for you")]
-# })
+response = retrieval_chain.invoke({
+    "chat_history": chat_history,
+    "input": "How can I add my liked tech products to Favourites section of Sony web app?",
+    "context": [Document(page_content="Here is the summarized answer for you")]
+})
+print(response["answer"])
 
 # for chunk in stream:
 #     print(chunk)
