@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
 const schemeUserLogin = z.object({
   name: z.string(),
@@ -19,6 +19,18 @@ const schemeUserLogin = z.object({
   phoneno: z.number().int().gte(1000000000).lte(9999999999),
   dp: z.string().url().optional(),
 });
+
+const botDescriptionSchema = z.object({
+  name: z.string(),
+  dp: z.string().url(),
+  category: z.string(),
+  questions: z.array(z.object({
+    question: z.string(),
+    answer: z.string(),
+  })),
+  additional: z.string().url(),
+})
+
 const newSchema = z.union([z.number(), z.string()]);
 // type newSchemaType = z.infer<typeof newSchema>;
 
@@ -51,6 +63,17 @@ app.post("/user/login", (req, res) => {
   } catch (error) {
     console.log(error);
     res.sendStatus(403);
+  }
+});
+
+app.post("/createbot", (req, res) => {
+  try {
+    const botDescription = botDescriptionSchema.parse(req.body);
+    
+  } catch (error) {
+    console.log(error);
+    res.status(403);
+    res.send(error);
   }
 });
 
