@@ -36,11 +36,11 @@ const data = {
 
 const styles = {
 
-     bgColor: 'black',
-    titleTextColor: "Grey",
+     bgColor: 'linear-gradient(to right, rgb(192, 132, 252), rgb(250, 204, 21))',
+    titleTextColor: "white",
     rowTitleColor: "white",
-     rowContentColor: 'grey',
-     arrowColor: "white",
+     rowContentColor: 'black',
+     arrowColor: "black",
      
      
 };
@@ -54,11 +54,11 @@ const config = {
 export default function Faqs() {
     return (
       
-        <div>
+        <div className='bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 z-[-10]'>
           <Header/>
-          <div className=' bg-red  m-auto mt-[150px] pl-[12%]'>
+          <div className=' m-auto py-[100px] pl-[11%]'>
           <iframe width="1100" height="515" src="https://www.youtube.com/embed/FFfdyV8gnWk?si=o15utQcr8sMzr3A2" title="YouTube video player" 
-          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe>
           </div>
    <div className='p-[60px] mt-[50px]'>
             <Faq
