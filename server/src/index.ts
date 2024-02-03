@@ -3,6 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { number, z } from "zod";
 import cors from "cors";
+import fs from "fs";
+import { spawn } from "child_process";
 
 dotenv.config();
 
@@ -21,15 +23,19 @@ const schemeUserLogin = z.object({
 });
 
 const botDescriptionSchema = z.object({
+  username: z.string(),
   name: z.string(),
   dp: z.string().url(),
+  companyname: z.string(),
   category: z.string(),
-  questions: z.array(z.object({
-    question: z.string(),
-    answer: z.string(),
-  })),
-  additional: z.string().url(),
-})
+  questions: z.array(
+    z.object({
+      question: z.string(),
+      answer: z.string(),
+    })
+  ),
+  additional: z.string().url().optional(),
+});
 
 const newSchema = z.union([z.number(), z.string()]);
 // type newSchemaType = z.infer<typeof newSchema>;
@@ -69,7 +75,51 @@ app.post("/user/login", (req, res) => {
 app.post("/createbot", (req, res) => {
   try {
     const botDescription = botDescriptionSchema.parse(req.body);
-    
+    fs.writeFileSync(
+      `./temp_db/${botDescription.username}.json`,
+      JSON.stringify(botDescription)
+    );
+    res.status(201);
+    res.send("OK!");
+  } catch (error) {
+    console.log(error);
+    res.status(403);
+    res.send(error);
+  }
+});
+
+app.get("/chatbot/:username/chat", (req, res) => {
+  try {
+    const userInput = req.query.input?.toString() || "Hi Tell me about your products?";
+    console.log(userInput)
+    const botDetails = botDescriptionSchema.parse(
+      JSON.parse(
+        fs.readFileSync(`./temp_db/${req.params.username}.json`, {
+          encoding: "utf-8",
+        })
+      )
+    );
+    const response = spawn("python3", [
+      "./python/custom_bot_qaa_only.py",
+      botDetails.name,
+      botDetails.dp,
+      botDetails.category,
+      botDetails.companyname,
+      JSON.stringify(botDetails.questions),
+      userInput
+    ]);
+    response.stdout.on("data", (data) => {
+      console.log(`stdout: ${data}`);
+      res.status(200);
+      res.send(data);
+    });
+    response.stderr.on("data", (data) => {
+      console.error(`stderr: ${data}`);
+    });
+
+    response.on("close", (code) => {
+      console.log(`child process exited with code ${code}`);
+    });
   } catch (error) {
     console.log(error);
     res.status(403);
