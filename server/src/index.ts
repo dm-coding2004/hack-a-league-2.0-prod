@@ -20,7 +20,7 @@ const schemeUserLogin = z.object({
   dp: z.string().url().optional(),
 });
 const newSchema = z.union([z.number(), z.string()]);
-type newSchemaType = z.infer<typeof newSchema>;
+// type newSchemaType = z.infer<typeof newSchema>;
 
 let some = newSchema.parse(10);
 

@@ -14,7 +14,7 @@ const Header = () => {
             <li className='cursor-pointer hover:bg-blue-500 rounded-3xl p-2 ' onClick={()=>router.push("createbot")}><a>Create bot</a></li>
             <li className=' hover:bg-blue-500  p-2 cursor-pointer rounded-3xl' ><a>Pricing</a></li>
             <li className=' hover:bg-blue-500 rounded-3xl p-2 cursor-pointer'><a>About us</a></li>
-            <li className=' hover:bg-blue-500 rounded-3xl p-2 cursor-pointer' onClick={()=>router.push("Faq")}><a>How to Use</a></li>
+            <li className=' hover:bg-blue-500 rounded-3xl p-2 cursor-pointer' onClick={()=>router.push("faq")}><a>How to Use</a></li>
             <li className=' hover:bg-blue-500 rounded-3xl p-2 cursor-pointer '><a>Feedback</a></li>
             
         </ul>
