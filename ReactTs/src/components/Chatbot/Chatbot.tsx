@@ -13,7 +13,8 @@ import { STENCIL_WIDTH } from 'src/theme';
 
 import exampleGraphJSON from 'src/rappid/config/example-graph.json';
 
-const Chatbot = (): ReactElement => {
+// @ts-ignore
+const Chatbot = ({ setJsonData }): ReactElement => {
 
     const elementRef = useRef(null);
     const toolbarRef = useRef(null);
@@ -137,7 +138,7 @@ const Chatbot = (): ReactElement => {
                 <div className="main-container">
                     <div ref={paperRef} className="paper-container"/>
                     <div style={{ display: jsonEditorOpened ? 'initial' : 'none' }}>
-                        <JsonEditor content={fileJSON}/>
+                        <JsonEditor setJsonData={setJsonData} content={fileJSON}/>
                     </div>
                 </div>
                 <Inspector/>

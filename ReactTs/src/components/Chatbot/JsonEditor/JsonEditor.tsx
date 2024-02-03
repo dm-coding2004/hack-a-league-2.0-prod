@@ -1,69 +1,77 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import React, { ReactElement, useContext, useEffect, useState } from "react";
+import { Subject } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 
-import 'src/components/Chatbot/JsonEditor/JsonEditor.scss';
-import eventBusServiceContext from 'src/services/event-bus-service.context';
-import { SharedEvents } from 'src/rappid/controller';
+import "src/components/Chatbot/JsonEditor/JsonEditor.scss";
+import eventBusServiceContext from "src/services/event-bus-service.context";
+import { SharedEvents } from "src/rappid/controller";
 
 interface Props {
-    content: Object;
+  content: Object;
+  setJsonData: Function;
 }
 
 const DEBOUNCE_TIME_MS = 500;
 
 const JsonEditor = (props: Props): ReactElement => {
+  const [placeholder] = useState(
+    'e.g. { "cells": [{ "type": "app.Message"}] }'
+  );
+  const [content, setContent] = useState<string | Object>(null);
+  // console.log(content);
+  const [contentSubject] = useState(new Subject<Object>());
+  const eventBusService = useContext(eventBusServiceContext);
 
-    const [placeholder] = useState('e.g. { "cells": [{ "type": "app.Message"}] }');
-    const [content, setContent] = useState<string | Object>(null);
-    // console.log(content);
-    const [contentSubject] = useState(new Subject<Object>());
-    const eventBusService = useContext(eventBusServiceContext);
+  useEffect(() => {
+    contentSubject
+      .pipe(debounceTime(DEBOUNCE_TIME_MS))
+      .subscribe((json: Object) => {
+        eventBusService.emit(SharedEvents.JSON_EDITOR_CHANGED, json);
+      });
+  }, [contentSubject, eventBusService]);
 
-    useEffect(() => {
-        contentSubject.pipe(debounceTime(DEBOUNCE_TIME_MS)).subscribe((json: Object) => {
-            eventBusService.emit(SharedEvents.JSON_EDITOR_CHANGED, json);
-        });
-    }, [contentSubject, eventBusService]);
+  useEffect(() => {
+    if (props.content) {
+      setContent(props.content);
+      props.setJsonData(props.content);
+    }
+  }, [props.content]);
 
-    useEffect(() => {
-        if (props.content) {
-            setContent(props.content);
-        }
-    }, [props.content]);
+  const parseJSON = (jsonString: string): void => {
+    setContent(jsonString);
+    props.setJsonData(jsonString);
+    let json;
+    if (!jsonString) {
+      json = { cells: [] };
+    } else {
+      try {
+        json = JSON.parse(jsonString);
+      } catch (e) {
+        // Invalid JSON
+        return;
+      }
+    }
+    contentSubject.next(json);
+  };
 
-    const parseJSON = (jsonString: string): void => {
-        setContent(jsonString);
-        let json;
-        if (!jsonString) {
-            json = { cells: [] };
-        } else {
-            try {
-                json = JSON.parse(jsonString);
-            } catch (e) {
-                // Invalid JSON
-                return;
-            }
-        }
-        contentSubject.next(json);
-    };
+  const formatJSON = (json: string | Object): string => {
+    if (!json) {
+      return "";
+    }
+    props.setJsonData(JSON.stringify(json));
+    return typeof json === "string" ? json : JSON.stringify(json, null, 2);
+  };
 
-    const formatJSON = (json: string | Object): string => {
-        if (!json) {
-            return '';
-        }
-        return typeof json === 'string' ? json : JSON.stringify(json, null, 2);
-    };
-
-    return (
-        <div className="chatbot-json-editor">
-            <textarea placeholder={placeholder}
-                      spellCheck="false"
-                      value={formatJSON(content)}
-                      onChange={(e) => parseJSON(e.target.value)}
-            />
-        </div>
-    );
+  return (
+    <div className="chatbot-json-editor">
+      <textarea
+        placeholder={placeholder}
+        spellCheck="false"
+        value={formatJSON(content)}
+        onChange={(e) => parseJSON(e.target.value)}
+      />
+    </div>
+  );
 };
 
 export default JsonEditor;
