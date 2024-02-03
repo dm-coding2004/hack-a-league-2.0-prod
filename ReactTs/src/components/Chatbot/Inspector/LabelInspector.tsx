@@ -27,8 +27,7 @@ const LabelInspector = (props: Props): ReactElement => {
     return (
         <>
             <h1>Component</h1>
-
-            <label htmlFor="label">Label</label>
+            <button style={{padding: 100}}>Create</button>
             <Input id="label"
                    type="text"
                    placeholder="Enter label"

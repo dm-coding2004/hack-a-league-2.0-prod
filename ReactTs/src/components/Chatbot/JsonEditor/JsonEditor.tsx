@@ -16,7 +16,7 @@ const JsonEditor = (props: Props): ReactElement => {
 
     const [placeholder] = useState('e.g. { "cells": [{ "type": "app.Message"}] }');
     const [content, setContent] = useState<string | Object>(null);
-    console.log(content);
+    // console.log(content);
     const [contentSubject] = useState(new Subject<Object>());
     const eventBusService = useContext(eventBusServiceContext);
 

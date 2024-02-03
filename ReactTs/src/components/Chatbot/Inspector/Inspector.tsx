@@ -59,6 +59,7 @@ const Inspector = (): ReactElement => {
             {
                 cell ? chooseInspector() : emptyInspector()
             }
+            
         </div>
     );
 };

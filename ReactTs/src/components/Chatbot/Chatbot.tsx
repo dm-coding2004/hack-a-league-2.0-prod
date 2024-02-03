@@ -142,6 +142,7 @@ const Chatbot = (): ReactElement => {
                 </div>
                 <Inspector/>
             </div>
+           
         </EventBusServiceContext.Provider>
     );
 };
