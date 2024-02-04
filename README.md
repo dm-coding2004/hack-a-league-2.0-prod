@@ -70,15 +70,16 @@ bash
 
 #### Get all items
 
-bash
+```bash
   GET /chatbot/:ownername/:botname/chat?input="Your Input"
 
 
 Outpt: The Generated Text bye the LLM Model with custom dataset provider by that owner.
+```
 
 #### Post item
 
-bash
+```bash
   POST /createbot {body: {
 username,
 name,
@@ -90,6 +91,7 @@ questions: [{question,answer}]
 
 
 Create a custom bot and gives a script tag and a custom page link.
+```
 
 
 ## Contribution
