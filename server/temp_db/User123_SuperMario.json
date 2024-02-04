@@ -1,0 +1,17 @@
+{
+  "username": "User123",
+  "name": "SuperMario",
+  "dp": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/800px-ChatGPT_logo.svg.png",
+  "companyname": "Hike Shoes",
+  "category": "Clothes and Shoes",
+  "questions": [
+    {
+      "question": "What are some good shoes to buy in your store.",
+      "answer": "Some Good shoes to buy are Adidas X11 shoe."
+    },
+    {
+      "question": "What is the price of Adidas X11",
+      "answer": "The price is of Adidas X11 is Rs 10,000."
+    }
+  ]
+}
