@@ -1,4 +1,4 @@
-<img src="Blank diagram.png">
+<img src="snip1.jpg">
 
 ----
 
@@ -44,7 +44,7 @@ bash
   
 
 ## CODE SNIPPETS
-<img src="snip.png">
+<img src="snip.jpg">
 
 ## Tech status
 |Language|        Use Case                         |
