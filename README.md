@@ -44,7 +44,7 @@ bash
   
 
 ## CODE SNIPPETS
-<img src="snip.jpg">
+<img src="snip3.png">
 
 ## Tech status
 |Language|        Use Case                         |
