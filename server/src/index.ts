@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use("/static",express.static("public"));
+app.use("/static", express.static("public"));
 
 const port = process.env.PORT || 9000;
 
@@ -80,6 +80,12 @@ app.post("/createbot", (req, res) => {
       `./temp_db/${botDescription.username}_${botDescription.name}.json`,
       JSON.stringify(botDescription)
     );
+    let scriptData = fs.readFileSync("../script-tag-gen/script.js", {
+      encoding: "utf8",
+    });
+    //http://localhost:9000/chatbot/Vilas/Mario/chat?input="Tell me about what shoe I can buy"
+    scriptData = scriptData.replace("{{{$4}}}", `http://localhost:9000/chatbot/${botDescription.username}/${botDescription.name}/chat`)
+
     res.status(201);
     res.send("OK!");
   } catch (error) {
@@ -91,13 +97,17 @@ app.post("/createbot", (req, res) => {
 
 app.get("/chatbot/:username/:botname/chat", (req, res) => {
   try {
-    const userInput = req.query.input?.toString() || "Hi Tell me about your products?";
-    console.log(userInput)
+    const userInput =
+      req.query.input?.toString() || "Hi Tell me about your products?";
+    console.log(userInput);
     const botDetails = botDescriptionSchema.parse(
       JSON.parse(
-        fs.readFileSync(`./temp_db/${req.params.username}_${req.params.botname}.json`, {
-          encoding: "utf-8",
-        })
+        fs.readFileSync(
+          `./temp_db/${req.params.username}_${req.params.botname}.json`,
+          {
+            encoding: "utf-8",
+          }
+        )
       )
     );
     const response = spawn("python3", [
@@ -107,12 +117,12 @@ app.get("/chatbot/:username/:botname/chat", (req, res) => {
       botDetails.category,
       botDetails.companyname,
       JSON.stringify(botDetails.questions),
-      userInput
+      userInput,
     ]);
     response.stdout.on("data", (data) => {
       console.log(`stdout: ${data}`);
       res.status(200);
-      res.send(data);
+      res.send({data:data.toString()});
     });
     response.stderr.on("data", (data) => {
       console.error(`stderr: ${data}`);

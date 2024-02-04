@@ -59,14 +59,14 @@ const App = (): ReactElement => {
 
           console.log(obj);
           obj["username"] = "User";
-          await fetch("http://localhost:9000/createbot", {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(obj),
-          }).then((res) => console.log(res.text()));
-          ref.current.href = `http://localhost:3002?obj=${JSON.stringify(obj)}"`;
+          // await fetch("http://localhost:9000/createbot", {
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   method: "POST",
+          //   body: JSON.stringify(obj),
+          // }).then((res) => console.log(res.text()));
+          ref.current.href = `http://localhost:3003?obj=${JSON.stringify(obj)}`;
           ref.current.click();
         }}
         style={{

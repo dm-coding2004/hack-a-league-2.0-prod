@@ -1,9 +1,11 @@
 'use client'
 import { redirect, useRouter } from 'next/navigation'
 import React from 'react'
+import {signIn, signOut} from "next-auth/react";
 
-const Header = () => {
+const Header = ({data}) => {
   const router=useRouter();
+  console.log(data);
   return (
     <header className='inset-0 backdrop-filter backdrop-blur-lg h-[100px] z-10 py-8 fixed w-full font-semibold  mx-auto px-9 shadow-2xl'>
         <nav className='flex justify-between items-center '>
@@ -19,8 +21,14 @@ const Header = () => {
             
         </ul>
         <div className='mr-6 flex gap-5  text-white justify-between items-center'>
-        <button >Sign in</button>
-        <button className='border-cyan-50 border-2 p-1 rounded'>Signup</button>
+        {data?.data === null ? <button onClick={signIn}>Sign in</button> : (<>
+        <p className='text-white'>{data?.data?.user?.name}</p>
+          <img onClick={signOut} alt='' className='rounded-full cursor-pointer
+           h-16 border-2 border-white' src={data?.data?.user?.image} />
+        </>
+        )}
+
+        {/* <button className='border-cyan-50 border-2 p-1 rounded'>Signup</button> */}
         </div>
         </nav>
         </header>
