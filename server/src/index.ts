@@ -80,14 +80,24 @@ app.post("/createbot", (req, res) => {
       `./temp_db/${botDescription.username}_${botDescription.name}.json`,
       JSON.stringify(botDescription)
     );
-    let scriptData = fs.readFileSync("../script-tag-gen/script.js", {
-      encoding: "utf8",
+    let scriptData = fs.readFileSync("./script-tag-gen/script.js", {
+      encoding: "utf-8",
     });
-    //http://localhost:9000/chatbot/Vilas/Mario/chat?input="Tell me about what shoe I can buy"
-    scriptData = scriptData.replace("{{{$4}}}", `http://localhost:9000/chatbot/${botDescription.username}/${botDescription.name}/chat`)
-
+    // http://localhost:9000/chatbot/Vilas/Mario/chat?input="Tell me about what shoe I can buy"
+    scriptData = scriptData.replace(
+      "{{{$4}}}",
+      `http://localhost:9000/chatbot/${botDescription.username}/${botDescription.name}/chat`
+    );
+    fs.writeFileSync(
+      `./public/${botDescription.username}_${botDescription.name}_script.js`,
+      scriptData
+    );
     res.status(201);
-    res.send("OK!");
+    res.send({
+      script: `
+    <script defer async src="https://c8af-223-30-20-253.ngrok-free.app/static/${botDescription.username}_${botDescription.name}_script.js"></script>`,
+      page: `http://localhost:3003/chatbot/${botDescription.username}/${botDescription.name}`,
+    });
   } catch (error) {
     console.log(error);
     res.status(403);
@@ -122,7 +132,7 @@ app.get("/chatbot/:username/:botname/chat", (req, res) => {
     response.stdout.on("data", (data) => {
       console.log(`stdout: ${data}`);
       res.status(200);
-      res.send({data:data.toString()});
+      res.send({ data: data.toString() });
     });
     response.stderr.on("data", (data) => {
       console.error(`stderr: ${data}`);

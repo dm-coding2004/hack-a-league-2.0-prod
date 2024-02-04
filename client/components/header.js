@@ -13,7 +13,7 @@ const Header = ({data}) => {
         
         <ul className='flex-1 flex justify-center gap-16  text-white font-semibold 
         '>
-            <li className='cursor-pointer hover:bg-blue-500 rounded-3xl p-2 ' ><a href='http://localhost:3001' target='black'>Create bot</a></li>
+            <li className='cursor-pointer hover:bg-blue-500 rounded-3xl p-2 ' ><a href='http://localhost:3002' target='black'>Create bot</a></li>
             <li className=' hover:bg-blue-500  p-2 cursor-pointer rounded-3xl' ><a>Pricing</a></li>
             <li className=' hover:bg-blue-500 rounded-3xl p-2 cursor-pointer'><a>About us</a></li>
             <li className=' hover:bg-blue-500 rounded-3xl p-2 cursor-pointer' onClick={()=>router.push("faq")}><a>How to Use</a></li>
