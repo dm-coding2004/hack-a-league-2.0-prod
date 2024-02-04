@@ -9,27 +9,23 @@ const data = {
     title: "FAQ's",
     rows: [
         {
-            title: "Lorem ipsum dolor sit amet,",
-            content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tempor sem. Aenean vel turpis feugiat,
-              ultricies metus at, consequat velit. Curabitur est nibh, varius in tellus nec, mattis pulvinar metus.
-              In maximus cursus lorem, nec laoreet velit eleifend vel. Ut aliquet mauris tortor, sed egestas libero interdum vitae.
-              Fusce sed commodo purus, at tempus turpis.`,
+            title: "What is SuperLlama?",
+            content: `It is an enhanced version of which is LLM model developed by Meta.
+            SuperLama enables small and large buisnesses to integrate AI in the venture`,
         },
         {
-            title: "Nunc maximus, magna at ultricies elementum",
+            title: "Can I use Superlama if I don't have an existing website?",
             content:
-                "Nunc maximus, magna at ultricies elementum, risus turpis vulputate quam, vitae convallis ex tortor sed dolor.",
+                "Yes,Superlama provides a chat bot templete which can be run without an existing website",
         },
         {
-            title: "Curabitur laoreet, mauris vel blandit fringilla",
-            content: `Curabitur laoreet, mauris vel blandit fringilla, leo elit rhoncus nunc, ac sagittis leo elit vel lorem.
-            Fusce tempor lacus ut libero posuere viverra. Nunc velit dolor, tincidunt at varius vel, laoreet vel quam.
-            Sed dolor urna, lobortis in arcu auctor, tincidunt mattis ante. Vivamus venenatis ultricies nibh in volutpat.
-            Cras eu metus quis leo vestibulum feugiat nec sagittis lacus.Mauris vulputate arcu sed massa euismod dignissim. `,
+            title: "Is any prior experience required in programing to use Superlama?",
+            content: `No, Superlama is made in such a way that the users can use it with 
+            ease without any programing experience `,
         },
         {
             title: "What is the package version",
-            content: <p>current version is 1.2.1</p>,
+            content: <p>current version is 1.0.1</p>,
         },
     ],
 };
@@ -56,7 +52,7 @@ export default function Faqs() {
       
         <div className='bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 z-[-10]'>
           <Header/>
-          <div className=' m-auto py-[100px] pl-[11%]'>
+          <div className=' m-auto py-[100px] pl-[8%]'>
           <iframe width="1100" height="515" src="https://www.youtube.com/embed/FFfdyV8gnWk?si=o15utQcr8sMzr3A2" title="YouTube video player" 
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe>
           </div>
