@@ -46,7 +46,7 @@ bash
 ## CODE SNIPPETS
 <img src="snip3.png">
 
-## Tech status
+## Tech stack
 |Language|        Use Case                         |
 |:-------|:-------------------------------:|
 |![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)|  Data feeding to LLM model|
