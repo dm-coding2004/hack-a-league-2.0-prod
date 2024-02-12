@@ -2,6 +2,11 @@
 
 ----
 
+# NOTE
+Make sure you install ollama with tinyllama model!!
+
+Go, to their offical docs and do it.
+
 # Table contnets 
 * [Deployment](#deployment)
 * [Set up](#set-up)
