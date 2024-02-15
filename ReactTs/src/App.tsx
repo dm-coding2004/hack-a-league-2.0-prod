@@ -66,7 +66,7 @@ const App = (): ReactElement => {
           //   method: "POST",
           //   body: JSON.stringify(obj),
           // }).then((res) => console.log(res.text()));
-          ref.current.href = `http://localhost:3003?obj=${JSON.stringify(obj)}`;
+          ref.current.href = `http://localhost:3003?obj=${encodeURIComponent(JSON.stringify(obj))}`;
           ref.current.click();
         }}
         style={{

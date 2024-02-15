@@ -31,7 +31,7 @@ export default function Home({ params }) {
 
   const sendMessage = async (message) => {
     let url = `http://localhost:9000/chatbot/${dataMeta[0]}/${dataMeta[1]}/chat`;
-    url = url + `?input="${inputValue}"`;
+    url = url + `?input="${encodeURIComponent(inputValue)}"`;
 
     setIsLoading(true);
 
@@ -57,7 +57,7 @@ export default function Home({ params }) {
   return (
     <div className="container mx-auto max-w-[700px]">
       <div className="flex flex-col h-screen bg-gray-900 relative">
-        <h1 className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center py-3 font-bold text-6xl">SuperLlama</h1>
+        <h1 className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center py-3 font-bold text-6xl">{dataMeta[1] ? dataMeta[1] : "SuperLlama"}</h1>
         {/* <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="" className="h-20 inline absolute top-4 right-4 z-50 rounded-full " /> */}
         <div className="flex-grow p-6 overflow-y-auto scrollbar-track-black
         scrollbar-thin scrollbar-thumb-white ">

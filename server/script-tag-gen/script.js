@@ -264,7 +264,7 @@ const createChatLi = (message, className) => {
 const generateResponse = (chatElement) => {
     let API_URL = `{{{$4}}}`;
     const messageElement = chatElement.querySelector("p");
-    API_URL = API_URL + `?input=${userMessage}`;
+    API_URL = API_URL + `?input=${encodeURIComponent(userMessage)}`;
 
     // Define the properties and message for the API request
     const requestOptions = {

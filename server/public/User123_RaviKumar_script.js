@@ -262,9 +262,9 @@ const createChatLi = (message, className) => {
 }
 
 const generateResponse = (chatElement) => {
-    let API_URL = `http://localhost:9000/chatbot/User123/Mario/chat`;
+    let API_URL = `http://localhost:9000/chatbot/User123/RaviKumar/chat`;
     const messageElement = chatElement.querySelector("p");
-    API_URL = API_URL + `?input=${encodeURIComponent(userMessage)}`;
+    API_URL = API_URL + `?input=${userMessage}`;
 
     // Define the properties and message for the API request
     const requestOptions = {

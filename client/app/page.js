@@ -51,6 +51,7 @@ export default function Home() {
     }
 
     if (searchParams.has("obj")) {
+      console.log(searchParams.get("obj"));
       obj = JSON.parse(searchParams.get("obj"));
       obj["username"] = data?.data?.user?.name || "User123";
       reqForLLMBot();

@@ -95,7 +95,7 @@ app.post("/createbot", (req, res) => {
     res.status(201);
     res.send({
       script: `
-    <script defer async src="https://3320-223-30-20-253.ngrok-free.app/static/${botDescription.username}_${botDescription.name}_script.js"></script>`,
+    <script defer async src="http://localhost:9000/static/${botDescription.username}_${botDescription.name}_script.js"></script>`,
       page: `http://localhost:3003/chatbot/${botDescription.username}/${botDescription.name}`,
     });
   } catch (error) {
