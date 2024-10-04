@@ -31,7 +31,7 @@ To deploy this project run
 - These are the steps required to install the project.
 1. Clone the repo
    ```bash
-   git clone [https://github.com/dm-coding2004/hack-a-league-2.0-prod.git](https://github.com/dm-coding2004/hack-a-league-2.0)
+   git clone https://github.com/dm-coding2004/hack-a-league-2.0-prod.git
    ```
    
 2. Install NPM packages
